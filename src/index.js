@@ -22,13 +22,13 @@ class Page extends React.Component {
     let address = this.state.address
     if(dir === "forward"){
       if(address === this.state.rooms.length - 1){
-        console.log("end of rooms")
+        address = 0
       } else {
         address += 1
       }
     } else if (dir === "previous"){
       if(address === 0){
-        console.log("start of rooms")
+        address = this.state.rooms.length - 1
       } else {
         address -= 1
       }
@@ -55,6 +55,7 @@ class Page extends React.Component {
       <div>
         <Room
           roomInfo={currentRoom}
+          roomNumber={this.state.address}
           onClickToMove={(args) => this.handleMove(args)}
           onClickToCreate={() => this.handleCreate(this.state.address)}
         />
@@ -74,7 +75,7 @@ function ColorPicker(){
 }
 // ========================================
 
-ReactDOM.render(
+export default ReactDOM.render(
   <Page />,
   document.getElementById('root')
 );
